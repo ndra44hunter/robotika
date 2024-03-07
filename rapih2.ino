@@ -34,8 +34,8 @@ void setup() {
   Serial.begin(9600);
   
   // servo diatur ke posisi default
-  servo1.attach(5);
-  servo1.write(0);
+  servo1.attach(10);
+  servo1.write(180);
   delay(100);
   servo2.attach(9);
   servo2.write(90);
@@ -67,18 +67,19 @@ void loop() {
 
   timer1 = pulseIn(echoPin1, HIGH);
   jarak1 = timer1/58;
-  if(jarak1 <= 10){
+  if(jarak1 <= 30){
     Serial.println("Pintu Terbuka");
     // keadaan tutup luar diatur ke "buka"
     isTutup=false;
-    servo1.write(180);
+    // servo1.write(0);
+    servo1.write(180);    
     delay(1000);
   } else {
     // keadaan tutup luar diatur ke "tutup"
     Serial.println("Pintu tertutup");
     isTutup=true;
     Serial.println(jarak1);
-    servo1.write(0);
+    servo1.write(45);
     delay(1000);
   }
 
